@@ -11,6 +11,9 @@
 
 bin/
 obj/
+.vs
+.vs/
+vs/
 
 # Precompiled Headers
 *.gch
