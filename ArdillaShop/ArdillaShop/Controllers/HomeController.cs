@@ -1,6 +1,9 @@
-﻿using ArdillaShop.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using ArdillaShop.Data;
+using ArdillaShop.Models;
+using ArdillaShop.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,20 +15,39 @@ namespace ArdillaShop.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDbContext  _db;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext db)
         {
             _logger = logger;
+            _db = db;
         }
 
         public IActionResult Index()
         {
-            return View();
+            HomeVM homeVM = new HomeVM()
+            {
+                Products = _db.Product.Include(u => u.Category),
+                Categories = _db.Category
+            };
+            return View(homeVM);
         }
 
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public IActionResult Details(int id)
+        {
+            DetailsVM DetailsVM = new DetailsVM()
+            {
+                Product = _db.Product.Include(u => u.Category)
+               .Where(u => u.Id == id).FirstOrDefault(),
+                InCart = false
+            };
+
+            return View(DetailsVM);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
