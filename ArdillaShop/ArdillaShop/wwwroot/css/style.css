@@ -1,0 +1,18 @@
+﻿.cartCount {
+    background-color: rgb(237, 47, 33);
+    color: white;
+    border-radius: 50%;
+
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    font-size: 12pt;
+
+    position: relative;
+    right: 4px;
+    top: 4px;
+}
+.cartIcon{
+    font-size: 17pt;
+}

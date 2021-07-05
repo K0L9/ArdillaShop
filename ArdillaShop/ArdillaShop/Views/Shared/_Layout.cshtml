@@ -8,8 +8,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - ArdillaShop</title>
+    <link href="~/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/all.min.css" />
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="~/css/style.css">
+    <script src="https://kit.fontawesome.com/ed0c5aaee9.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
     <header>
@@ -31,6 +37,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Product</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Admin panel</a>
+                        </li>
                         <li>
                             @if (HttpContextAccessor.HttpContext.Session.Get<List<ShoppingCart>>(ENV.SessionCart) != null)
                             {
@@ -38,12 +47,12 @@
                                     @{
                                         var count = HttpContextAccessor.HttpContext.Session.Get<List<ShoppingCart>>(ENV.SessionCart).Count();
                                     }
-                                    Cart&nbsp;(@count);
+                                    <i class="fas fa-shopping-cart cartIcon"></i><span class="cartCount">@count</span>
                                 </a>
                             }
                             else
                             {
-                                <a class="nav-link"> Cart&nbsp;(0) </a>
+                                <a class="nav-link cartIcon"> <i class="fas fa-shopping-cart"></i><span class="cartCount">0</span></a>
                             }
                         </li>
                     </ul>

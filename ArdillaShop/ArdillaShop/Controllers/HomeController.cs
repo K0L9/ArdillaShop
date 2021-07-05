@@ -80,6 +80,26 @@ namespace ArdillaShop.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+        [HttpGet]
+        public IActionResult RemoveFromCart(int id)
+        {
+            List<ShoppingCart> shoppingCartList = new List<ShoppingCart>();
+            if (HttpContext.Session.Get<IEnumerable<ShoppingCart>>(ENV.SessionCart) != null
+                && HttpContext.Session.Get<IEnumerable<ShoppingCart>>(ENV.SessionCart).Count() > 0)
+            {
+                shoppingCartList = HttpContext.Session.Get<List<ShoppingCart>>(ENV.SessionCart);
+            }
+
+            var product = shoppingCartList.FirstOrDefault(x => x.ProductId == id);
+
+            if (product == null)
+                return NotFound();
+
+            shoppingCartList.Remove(product);
+            HttpContext.Session.Set(ENV.SessionCart, shoppingCartList);
+
+            return RedirectToAction(nameof(Index));
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
