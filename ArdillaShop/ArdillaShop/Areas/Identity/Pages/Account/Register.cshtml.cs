@@ -62,8 +62,14 @@ namespace ArdillaShop.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 
-            [Display(Name ="Full name")]
-            public string FullName { get; set; }
+            public string Name { get; set; }
+            public string Surname{ get; set; }
+            public string Gender { get; set; }
+            public uint Age{ get; set; }
+            [Display(Name="Telegram name")]
+            public string TelegramName{ get; set; }
+            [Display(Name="Facebook link")]
+            public string FacebookProfile{ get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -78,7 +84,16 @@ namespace ArdillaShop.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new AppUser { UserName = Input.Email, Email = Input.Email, FullName = Input.FullName };
+                var user = new AppUser 
+                { 
+                    Email = Input.Email,
+                    Name = Input.Name,
+                    Surname = Input.Surname,
+                    Age = Input.Age,
+                    Gender = Input.Gender,
+                    TelegramName = Input.TelegramName,
+                    FacebookProfile = Input.FacebookProfile
+                };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
