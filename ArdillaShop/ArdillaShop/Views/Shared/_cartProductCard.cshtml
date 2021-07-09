@@ -1,0 +1,26 @@
+﻿@model ArdillaShop.Models.Product
+
+    <style>
+        .cartProduct {
+            font-size: 16pt;
+            text-align: center;
+        }
+
+        .cartIcon {
+            width: 100px;
+        }
+        
+    </style>
+
+    <div class="row cartProduct">
+        <div class="col-2">
+            <img src="@ENV.ImagePath@Model.Image" alt="Product image" class="cartIcon" />
+        </div>
+        <div class="col-4">@Model.Name</div>
+        <div class="col-2">@Model.Category.Name</div>
+        <div class="col-1 font-weight-bold">@Model.Price$</div>
+        <div class="col-3">
+            <div class="btn-light row rounded">Details</div>
+            <div class="btn-danger row rounded">Remove</div>
+        </div>
+    </div>

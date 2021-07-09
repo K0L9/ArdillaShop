@@ -1,0 +1,11 @@
+﻿@model IEnumerable<ArdillaShop.Models.Product>
+<script>
+    console.log(@Model.Count())
+</script>
+
+<div class="container-fluid">
+    @foreach (var item in Model)
+    {
+        <partial name="_cartProductCard" model="item" />
+    }
+</div>

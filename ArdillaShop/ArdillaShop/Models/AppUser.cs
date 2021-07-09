@@ -8,8 +8,8 @@ namespace ArdillaShop.Models
 {
     public class AppUser : IdentityUser
     {
-        public string Name { get; set; }
-        public string Surname { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public uint Age { get; set; }
         public string Gender { get; set; }
         public string TelegramName { get; set; }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using ArdillaShop.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -12,12 +11,12 @@ namespace ArdillaShop.Areas.Identity.Pages.Account.Manage
 {
     public partial class IndexModel : PageModel
     {
-        private readonly UserManager<AppUser> _userManager;
-        private readonly SignInManager<AppUser> _signInManager;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
 
         public IndexModel(
-            UserManager<AppUser> userManager,
-            SignInManager<AppUser> signInManager)
+            UserManager<IdentityUser> userManager,
+            SignInManager<IdentityUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -33,30 +32,15 @@ namespace ArdillaShop.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
+            [Phone]
+            [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
-
-
-            [Required]
-            [EmailAddress]
-            [Display(Name = "Email")]
-            public string Email { get; set; }
-            public string Name { get; set; }
-            public string Surname { get; set; }
-            public string Gender { get; set; }
-            public uint Age { get; set; }
-            [Display(Name = "Telegram name")]
-            public string TelegramName { get; set; }
-            [Display(Name = "Facebook link")]
-            public string FacebookProfile { get; set; }
         }
 
-        private async Task LoadAsync(AppUser user)
+        private async Task LoadAsync(IdentityUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-
-            AppUser appUser = new AppUser();
-            var name = appUser.Name;
 
             Username = userName;
 
@@ -65,34 +49,6 @@ namespace ArdillaShop.Areas.Identity.Pages.Account.Manage
                 PhoneNumber = phoneNumber
             };
         }
-
-
-        //private async Task LoadAsync(IdentityUser user)
-        //{
-        //    var userName = await _userManager.GetUserNameAsync(user);
-        //    var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-
-        //    //AppUser appUser = new AppUser();
-        //    //string name = user.Name;
-        //    //string surname = user.Surname;
-        //    //string age = user.Age.ToString();
-        //    //string gender = user.Gender;
-        //    //string fb = user.FacebookProfile;
-        //    //string tg = user.TelegramName;
-
-
-        //    Input = new InputModel
-        //    {
-        //        PhoneNumber = Input.PhoneNumber
-        //        //Email = Input.Email,
-        //        //Name = Input.Name,
-        //        //Surname = Input.Surname,
-        //        //Age = Input.Age,
-        //        //Gender = Input.Gender,
-        //        //TelegramName = Input.TelegramName,
-        //        //FacebookProfile = Input.FacebookProfile
-        //    };
-        //}
 
         public async Task<IActionResult> OnGetAsync()
         {
