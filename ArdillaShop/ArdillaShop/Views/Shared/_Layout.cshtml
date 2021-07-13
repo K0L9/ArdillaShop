@@ -24,7 +24,9 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ArdillaShop</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="@ENV.LongLogoImagePath" alt="ArdillaShop" width="200" />
+                </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -37,15 +39,15 @@
                         @if (User.IsInRole(ENV.AdminRole))
                         {
                             <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin Panel</a>
-                                    <div class="dropdown-menu">
-                                        <a class="nav-link text-dark dropdown-item" asp-area="" asp-controller="Category" asp-action="Index">Category</a>
-                                        <a class="nav-link text-dark dropdown-item" asp-area="" asp-controller="Product" asp-action="Index">Product</a>
-                                        <a class="nav-link text-dark dropdown-item" asp-area="Identity" asp-page="/Account/Register">Create new admin</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="nav-link text-dark dropdown-item" asp-area="" asp-controller="Admin" asp-action="Index">AdminLTE</a>
-                                    </div>
-                                </li>
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin Panel</a>
+                                <div class="dropdown-menu">
+                                    <a class="nav-link text-dark dropdown-item" asp-area="" asp-controller="Category" asp-action="Index">Category</a>
+                                    <a class="nav-link text-dark dropdown-item" asp-area="" asp-controller="Product" asp-action="Index">Product</a>
+                                    <a class="nav-link text-dark dropdown-item" asp-area="Identity" asp-page="/Account/Register">Create new admin</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="nav-link text-dark dropdown-item" asp-area="" asp-controller="Admin" asp-action="Index">AdminLTE</a>
+                                </div>
+                            </li>
                         }
                         <li class="nav-item ml-auto">
                             @if (HttpContextAccessor.HttpContext.Session.Get<List<ShoppingCart>>(ENV.SessionCart) != null)
