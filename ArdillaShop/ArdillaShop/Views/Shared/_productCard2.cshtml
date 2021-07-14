@@ -1,6 +1,6 @@
 ﻿@model ArdillaShop.Models.Product
 
-<div class="col-4">
+<div class="col-4 filter @Model.Category.Name">
     <a asp-action="Details" asp-route-id="@Model.Id" class="text-decoration-none text-reset">
         <div class="card mb-3 shadow-sm">
             <h3 class="card-header">@Model.Name</h3>

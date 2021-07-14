@@ -1,0 +1,27 @@
+﻿@model ArdillaShop.Models.Product
+
+    <style>
+        .cartProduct {
+            font-size: 16pt;
+            text-align: center;
+            border-bottom: 1px gray solid;
+        }
+
+        .cartIcon {
+            width: 100px;
+        }
+        
+    </style>
+
+    <div class="row cartProduct">
+        <div class="col-2">
+            <img src="@ENV.ImagePath@Model.Image" alt="Product image" class="cartIcon" />
+        </div>
+        <div class="col-4 m-auto">@Model.Name</div>
+        <div class="col-2 m-auto">@Model.Category.Name</div>
+        <div class="col-1 font-weight-bold m-auto">@Model.Price$</div>
+        <div class="col-3 d-flex flex-column justify-content-around">
+            <a asp-controller="Home" asp-action="DetailsFromCart" class="btn-secondary row rounded d-inline-block pl-2 pr-2 text-white">Details</a>
+            <a asp-controller="Cart" asp-action="Remove" class="btn-danger row rounded d-inline-block pl-2 pr-2 text-white">Remove</a>
+        </div>
+    </div>
