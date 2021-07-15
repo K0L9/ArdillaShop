@@ -1,10 +1,10 @@
 ﻿using ArdillaShop.Data;
 using ArdillaShop.Models;
+using ArdillaShop.Models.ViewModels;
 using ArdillaShop.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Shop18.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -86,8 +86,27 @@ namespace ArdillaShop.Controllers
 
         public IActionResult OrderConfirmation()
         {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claims = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
+            List<ShoppingCart> shoppingCartList = new List<ShoppingCart>();
+            if (HttpContext.Session.Get<IEnumerable<ShoppingCart>>(ENV.SessionCart) != null
+                && HttpContext.Session.Get<IEnumerable<ShoppingCart>>(ENV.SessionCart).Count() > 0)
+            {
+                shoppingCartList = HttpContext.Session.Get<List<ShoppingCart>>(ENV.SessionCart);
+            }
+
+            List<int> prductinCart = shoppingCartList.Select(i => i.ProductId).ToList();
+            IEnumerable<Product> productList = _db.Product.Where(u => prductinCart.Contains(u.Id));
+
+            ProductUserVM productUserVM = new ProductUserVM()
+            {
+                AppUser = _db.AppUser.FirstOrDefault(u => u.Id == claims.Value),
+                ProductList = productList.ToList()
+            };
+
             HttpContext.Session.Clear();
-            return View();
+            return View(productUserVM);
         }
     }
 }

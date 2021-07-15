@@ -1,44 +1,8 @@
-﻿<style>
-    .mainBlock {
-        /*container bg-white shadow m-auto d-inline-block*/
-        width: 50%;
-        background-color: white;
-        box-shadow: 1px 1px 5px gray;
-        margin: auto;
-        border-radius: 3px;
-    }
+﻿@model ArdillaShop.Models.ViewModels.ProductUserVM
+<div class="p-2 rounded container shadow">
+    <h2>@Model.AppUser.FirstName @Model.AppUser.LastName, thank you for your buy on our cite</h2>
+    <p>Your application has been accepted. <span id="strongText">Check your mail.</span></p>
+    <h3 class="fa-bold text-right">Total: @Model.ProductList.Select(x => x.Price).Sum()</h3>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-success btn-square form-control btn-lg mx-3" style="height:50px;">Go Back</a>
 
-    .priceCell {
-        font-weight: 600;
-    }
-
-    #total {
-        font-weight: 500;
-        font-size: 22pt;
-        text-align: right;
-        margin-right: 8%;
-    }
-
-    #total span {
-        font-weight: bold;
-    }
-
-    #description {
-        text-align: left;
-        margin-left: 8%;
-        margin-right: 8%;
-    }
-
-    #strongText {
-        font-weight: 600;
-    }
-</style>
-
-
-<div class="mainBlock">
-    <h2>Name Surname, thank you for your buy on our cite</h2>
-    <p id="description">Your application has been accepted. <span id="strongText">Check your mail.</span></p>
-    <p id="total">Total: <span>000,00</span></p>
-
-    <hr />
 </div>
