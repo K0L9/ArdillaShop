@@ -20,5 +20,7 @@ namespace ArdillaShop
 
         public static string AdminRole = "Admin";
         public static string CustomerRole= "Customer";
+
+        public const string AdminEmail = "kovalkola2@gmail.com";
     }
 }

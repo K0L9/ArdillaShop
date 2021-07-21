@@ -1,75 +1,20 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-    <style>
-        body {
-            background-color: rgba(0, 0, 0, .03);
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-
-        .mainBlock {
-            /*container bg-white shadow m-auto d-inline-block*/
-            width: 50%;
-            background-color: white;
-            box-shadow: 1px 1px 5px gray;
-            margin: auto;
-            border-radius: 3px;
-        }
-        table{
-            width: 85%;
-            margin: auto;
-        }
-        table, th, td {
-            border: 1px solid rgba(195, 195, 195, .7);
-            border-collapse: collapse;
-        }
-        .priceCell{
-            font-weight: 600;
-        }
-        #total{
-            font-weight: 500;
-            font-size: 22pt;
-            text-align: right;
-            margin-right: 8%;
-        }
-        #total span{
-            font-weight: bold;
-        }
-        #description{
-            text-align: left;
-            margin-left: 8%;
-            margin-right: 8%;
-        }
-        #strongText{
-            font-weight:600;
-        }
-    </style>
-</head>
-<body>
-    <div class="mainBlock">
-        <img src="../images/logos/ready_logo_black.png" alt="Ardilla Shop" width="40%" />
-        <h2>Name Surname, thank you for your buy on our cite</h2>
-        <p id="description">Your application has been accepted. <span id="strongText">We will contact you shortly to confirm the order</span> or send an information message in Viber or SMS.</p>
-        <table>
+﻿<body style="background-color: rgba(0, 0, 0, .03); font-family: Arial, sans-serif; text-align: center;">
+    <div class="mainBlock" style="width: 50%; background-color: white; box-shadow: 1px 1px 5px gray; margin: auto; border-radius: 3px;">
+        <h1 style="text-align: center">Ardilla Shop</h1>
+        <!--<img src="https://media.discordapp.net/attachments/735092415354110075/865651036311781436/ready_logo_black.png" alt="Ardilla Shop" width="40%" />-->
+        <h2>{0}, thank you for your buy on our cite</h2>
+        <p id="description" style="text-align: left; margin-left: 8%; margin-right: 8%; font-weight: 600; ">Your application has been accepted. <span id="strongText">We will contact you shortly to confirm the order</span> or send an information message in Viber or SMS.</p>
+        <table style="width: 85%; margin: auto; border: 1px solid rgba(195, 195, 195, .7); border-collapse: collapse; ">
             <tr>
-                <th>Id</th>
-                <th></th>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Price</th>
-            </tr>
-            <tr>
-                <td><!--id--> 0</td>
-                <td><!--picture--> NO IMAGE</td>
-                <td><!--name-->TEST PRODUCT NAME</td>
-                <td><!--Category-->TEST CATEGORY</td>
-                <td class="priceCell"><!--price-->000,00</td>
+                <th style="border: 1px solid rgba(195, 195, 195, .7); border-collapse: collapse;">Id</th>
+                <th style="border: 1px solid rgba(195, 195, 195, .7); border-collapse: collapse;"></th>
+                <th style="border: 1px solid rgba(195, 195, 195, .7); border-collapse: collapse;">Name</th>
+                <th style="border: 1px solid rgba(195, 195, 195, .7); border-collapse: collapse;">Category</th>
+                <th style="border: 1px solid rgba(195, 195, 195, .7); border-collapse: collapse;">Price</th>
             </tr>
         </table>
-        <p id="total">Total: <span>000,00</span></p>
+
+        <p id="total" style="font-weight: 500; font-size: 22pt; text-align: right; margin-right: 8%;">Total: <span style="font-weight: bold;"> {2}$ </span></p>
 
         <hr />
         <footer>
@@ -79,4 +24,3 @@
         </footer>
     </div>
 </body>
-</html>
